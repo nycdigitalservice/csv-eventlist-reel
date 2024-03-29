@@ -1,0 +1,338 @@
+@import "./variables.css";
+
+:root * {
+  box-sizing: border-box
+}
+
+body {
+  color: var(--nyc-sys-color-text);
+  background: var(--color-light);
+  font-size: var(--nyc-sys-font-size-base);
+  font-family: var(--nyc-sys-font-family-base);
+  line-height: 1.4;
+  letter-spacing: var(--tracking);
+  margin: 0;
+}
+
+a {
+  color: currentColor;
+  text-decoration: underline
+}
+
+.container {
+  box-sizing: content-box;
+  margin-inline: auto;
+
+  max-inline-size: var(--page-max-width);
+  padding-inline-start: var(--gutter);
+  padding-inline-end: var(--gutter);
+}
+
+/* Layout - Reel */
+.reel {
+  display: flex;
+  block-size: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-color: #ccc transparent;
+  scroll-behavior: smooth;
+}
+
+.reel > * {
+  flex: 0 0 auto;
+  display: flex;
+}
+
+
+.reel > img {
+  block-size: 100%;
+  flex-basis: auto;
+  width: auto;
+}
+
+.reel > * + * {
+  margin-inline-start: 1rem;
+}
+
+.reel.overflowing {
+  padding-block-end: 1rem;
+
+  & ~ .reel__nav {
+    visibility: visible;
+  }
+}
+
+.reel::-webkit-scrollbar {
+  block-size: .5rem;
+}
+
+.reel::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.reel::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+  background-image: linear-gradient(tranparent 0, transparent 0.25rem, #ccc 0.25rem, #ccc 0.75rem, transparent 0.75rem);
+}
+
+.reel__nav {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.reel__nav button {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  justify-content: center;
+  touch-action: none;
+  box-shadow: none;
+
+  /* TODO refactor how buttons deal with icons */
+  & i:last-child {
+    margin: 0;
+  }
+}
+
+/* Card component */
+.c-card,
+nyc-event-card {
+  position: relative;
+  contain: content;
+  display: flex;
+  flex-direction: column;
+
+  background: var(--nyc-cmp-card-background);
+  color: var(--nyc-cmp-card-color);
+
+  max-inline-size: 12.5rem;
+  border: var(--nyc-cmp-card-border, none);
+  border-radius: 10px;
+  box-shadow: var(--nyc-cmp-card-shadow);
+  padding: 1rem;
+  transition: all .3s ease;
+  width: 100%;
+  z-index: 1;
+
+  &::before {
+    position: absolute;
+    content: '';
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--nyc-cmp-card-background-hover);
+    z-index: -1;
+    transition: opacity 0.3s linear, box-shadow .3s ease-out;
+    opacity: 0;
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 999px 999px rgba(255, 255, 255, 0.5);
+    z-index: 500;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.c-card__header {
+  flex-grow: 1;
+  & :--heading {
+    font-size: var(--size-step-05);
+    font-size: 1.13rem;
+    margin-block-start: var(--space-s);
+    max-inline-size: 85%;
+    color: inherit;
+
+    & a {
+      display: block;
+    }
+
+    & a:focus {
+      text-decoration: underline;
+      outline: none;
+      outline-color: var(--nyc-cmp-card-color-outline);
+    }
+  }
+}
+
+.c-card__body {
+  margin-block-start: .5rem;
+  flex-grow: 0;
+  font-size: 1rem;
+}
+
+.c-card__primary-action {
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0; /* 2 */
+    left: 0; /* 2 */
+    right: 0; /* 2 */
+    bottom: 0; /* 2 */
+    z-index: 1; /* 3 */
+  }
+  &:hover .c-card__primary-action__icon-wrapper {
+    border-color: currentColor;
+  }
+}
+
+.c-card__primary-action__icon-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .25rem;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.2rem;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  border-color: transparent;
+  transition: border-color .3s ease;
+}
+
+.c-card[data-variant=event],
+nyc-event-card {
+  & time {
+    width: 40%;
+  }
+}
+
+@media (min-width: 768px) {
+  .c-card__body {
+    font-size: 1.13rem;
+  }
+  .c-card__header :--heading {
+    font-size: 1.75rem;
+  }
+  .c-card, nyc-event-card {
+    max-inline-size: 17.19rem;
+  }
+}
+
+.c-card__summary {
+  font-size: 1rem;
+}
+
+.c-card__cta {
+  position: absolute;
+  top: 0;
+  bottom:0;
+  left:0;
+  right:0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 1rem;
+
+  &:hover .c-card__cta__icon-wrapper {
+    border-color: white;
+  }
+
+  & i {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (-ms-high-contrast: active),
+screen and (-ms-high-contrast: none) {
+   /* IE10+ specific styles go here */
+}
+
+/* Buttons */
+.button {
+  appearance: none;
+  border: none;
+  background-color: var(--nyc-cmp-button-background);
+  color: var(--nyc-cmp-button-color);
+  box-shadow: var(--nyc-cmp-button-shadow);
+  padding: 1rem;
+  font-size: 1.13rem;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+
+  /* TODO refactor how buttons deal with icons */
+  & > i:last-child {
+    flex-shrink: 0;
+    margin-left: 3rem;
+    margin-inline-start: var(--space-s-l);
+    margin-block: auto;
+  }
+
+  &[disabled] {
+    color: var(--nyc-cmp-button-color-disabled);
+    background: var(--nyc-cmp-button-background-disabled);
+  }
+}
+
+.button[data-variant="tertiary"] {
+  --nyc-cmp-button-background: var(--nyc-sys-color-tertiary);
+  --nyc-cmp-button-color: var(--nyc-sys-color-on-tertiary);
+
+  &:hover {
+    --nyc-cmp-button-background: var(--nyc-sys-color-primary);
+  }
+}
+
+/* Utils */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+[class*="i-" ] {
+    display: inline-block;
+}
+
+.i-ri\:arrow-right-line {
+    --nyc-icon: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 24 24' width='1.2em' height='1.2em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='m16.172 11l-5.364-5.364l1.414-1.414L20 12l-7.778 7.778l-1.414-1.414L16.172 13H4v-2h12.172Z'/%3E%3C/svg%3E");
+    -webkit-mask: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 24 24' width='1.2em' height='1.2em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='m16.172 11l-5.364-5.364l1.414-1.414L20 12l-7.778 7.778l-1.414-1.414L16.172 13H4v-2h12.172Z'/%3E%3C/svg%3E") no-repeat;
+    -webkit-mask: var(--nyc-icon) no-repeat;
+    mask: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 24 24' width='1.2em' height='1.2em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='m16.172 11l-5.364-5.364l1.414-1.414L20 12l-7.778 7.778l-1.414-1.414L16.172 13H4v-2h12.172Z'/%3E%3C/svg%3E") no-repeat;
+    -webkit-mask: var(--nyc-icon) no-repeat;
+    mask: var(--nyc-icon) no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    color: inherit;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.i-ri\:arrow-left-line {
+    --nyc-icon: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 24 24' width='1.2em' height='1.2em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='M7.828 11H20v2H7.828l5.364 5.364l-1.414 1.414L4 12l7.778-7.778l1.414 1.414L7.828 11Z'/%3E%3C/svg%3E");
+    -webkit-mask: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 24 24' width='1.2em' height='1.2em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='M7.828 11H20v2H7.828l5.364 5.364l-1.414 1.414L4 12l7.778-7.778l1.414 1.414L7.828 11Z'/%3E%3C/svg%3E") no-repeat;
+    -webkit-mask: var(--nyc-icon) no-repeat;
+    mask:url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 24 24' width='1.2em' height='1.2em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='M7.828 11H20v2H7.828l5.364 5.364l-1.414 1.414L4 12l7.778-7.778l1.414 1.414L7.828 11Z'/%3E%3C/svg%3E") no-repeat;
+    -webkit-mask: var(--nyc-icon) no-repeat;
+    mask: var(--nyc-icon) no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    color: inherit;
+    width: 1.2em;
+    height: 1.2em;
+}

@@ -1,0 +1,183 @@
+:root {
+  /* Reference tokens: set final values */
+  --nyc-ref-color-blue-100: hsla(207, 71%, 68%, 1);
+  --nyc-ref-color-blue-200: hsla(213, 53%, 50%, 1);
+  --nyc-ref-color-blue-300: hsla(213, 59%, 45%, 1);
+  --nyc-ref-color-blue-400: hsla(209, 100%, 42%, 1);
+  --nyc-ref-color-blue-500: hsla(208, 100%, 30%, 1);
+  --nyc-ref-color-blue-600: hsla(212, 75%, 28%, 1);
+  --nyc-ref-color-blue-50: hsla(214, 54%, 95%, 1);
+  --nyc-ref-color-orange-500: hsla(26, 92%, 58%, 1);
+  --nyc-ref-color-orange-700: hsla(25, 78%, 41%, 1);
+  --nyc-ref-color-purple-525: hsla(271, 61%, 35%, 0.25);
+  --nyc-ref-color-neutral-0: hsla(0, 0%, 100%, 1);
+  --nyc-ref-color-neutral-100: hsla(0, 0%, 93%, 1);
+  --nyc-ref-color-neutral-200: hsla(0, 0%, 80%, 1);
+  --nyc-ref-color-neutral-300: hsla(0, 0%, 57%, 1);
+  --nyc-ref-color-neutral-400: hsla(0, 0%, 40%, 1);
+  --nyc-ref-color-neutral-425: hsla(0, 0%, 40%, 0.25);
+  --nyc-ref-color-neutral-900: hsla(0, 0%, 0%, 1);
+  --nyc-ref-color-neutral-920: hsla(0, 0%, 0%, .2);
+  --nyc-ref-color-neutral-925: hsla(0, 0%, 0%, .25);
+
+
+  --nyc-ref-gradient-blue-1: linear-gradient(154.62deg, #0075D0 48.25%, #0D4D8B 92.24%);
+  --nyc-ref-gradient-blue-2: linear-gradient(150.06deg, #0075D0 -11.53%, #0D4D8B 16.58%, #01194E 53.58%, #000B23 73.72%);
+
+  --nyc-ref-shadow-200: 0px 4px 4px 0px var(--nyc-ref-color-neutral-425);
+  --nyc-ref-shadow-300: 0px 4px 4px 0px var(--nyc-ref-color-purple-525);
+  --nyc-ref-shadow-400: 4px 4px 8px var(--nyc-ref-color-neutral-920);
+  --nyc-ref-shadow-450: 0 4px 8px var(--nyc-ref-color-neutral-920);
+  --nyc-ref-shadow-500: 0 4px 4px var(--nyc-ref-color-neutral-925);
+
+  --nyc-ref-font-family-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* 73.125rem = 1170px */
+  --nyc-ref-dimension-page-max-width: 73.125rem;
+
+  --measure: 75ch;
+  /* page-max-width: 1170px */
+  --page-max-width: 73.125rem;
+  --gutter: var(--size-step-0);
+
+  /* Fluid size tokens, used for font sizes */
+
+  /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1170,24,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+  /* Step -2: 12.50px → 15.36px */
+  --size-step--2: clamp(0.78rem, calc(0.71rem + 0.34vw), 0.96rem);
+
+  /* /\* Step -1: 15.00px → 19.20px *\/ */
+  /* --size-step--1: clamp(0.94rem, calc(0.84rem + 0.49vw), 1.20rem); */
+
+  /* Step -1: 16.00px → 20px */
+  --size-step--1: clamp(1rem, calc(0.84rem + 0.49vw), 1.25rem);
+
+  /* Step 05: 18.00px → 22.00px */
+  --size-step--05: clamp(1.13rem, calc(0.98rem + 0.71vw), 1.375rem);
+  /* Step 0: 18.00px → 24.00px */
+  --size-step-0: clamp(1.13rem, calc(0.98rem + 0.71vw), 1.50rem);
+  /* Step 0: 18.00px → 28.00px */
+  --size-step-05: clamp(1.13rem, calc(0.98rem + 0.71vw), 1.75rem);
+
+  /* Step 1: 21.60px → 30.00px */
+  --size-step-1: clamp(1.35rem, calc(1.15rem + 0.99vw), 1.88rem);
+
+  /* Step 2: 25.92px → 37.50px */
+  --size-step-2: clamp(1.62rem, calc(1.35rem + 1.36vw), 2.34rem);
+
+  /* Step 3: 31.10px → 46.88px */
+  --size-step-3: clamp(1.94rem, calc(1.57rem + 1.86vw), 2.93rem);
+
+  /* Step 4: 37.32px → 58.59px */
+  --size-step-4: clamp(2.33rem, calc(1.83rem + 2.50vw), 3.66rem);
+
+  /* Step 5: 44.79px → 73.24px */
+  --size-step-5: clamp(2.80rem, calc(2.13rem + 3.35vw), 4.58rem);
+
+  /* @link https://utopia.fyi/space/calculator?c=320,18,1.2,1170,24,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+  /* Space 3xs: 5px → 6px */
+  --space-3xs: clamp(0.31rem, calc(0.29rem + 0.12vw), 0.38rem);
+
+  /* Space 2xs: 9px → 12px */
+  --space-2xs: clamp(0.56rem, calc(0.49rem + 0.35vw), 0.75rem);
+
+  /* Space xs: 14px → 18px */
+  --space-xs: clamp(0.88rem, calc(0.78rem + 0.47vw), 1.13rem);
+
+  /* Space s: 18px → 24px */
+  --space-s: clamp(1.13rem, calc(0.98rem + 0.71vw), 1.50rem);
+
+  /* Space m: 27px → 36px */
+  /* --space-m: clamp(1.69rem, calc(1.48rem + 1.06vw), 2.25rem); */
+  /* Space m: 24px → 40px */
+  --space-m: clamp(1.5rem, calc(1.48rem + 1.06vw), 2.5rem);
+
+  /* Space l: 36px → 48px */
+  --space-l: clamp(2.25rem, calc(1.97rem + 1.41vw), 3.00rem);
+
+  /* Space xl: 54px → 72px */
+  --space-xl: clamp(3.38rem, calc(2.95rem + 2.12vw), 4.50rem);
+
+  /* Space 2xl: 72px → 96px */
+  --space-2xl: clamp(4.50rem, calc(3.94rem + 2.82vw), 6.00rem);
+
+  /* Space 3xl: 108px → 144px */
+  --space-3xl: clamp(6.75rem, calc(5.90rem + 4.24vw), 9.00rem);
+
+  /* One-up pairs */
+  /* Space 3xs-2xs: 5px → 12px */
+  --space-3xs-2xs: clamp(0.31rem, calc(0.15rem + 0.82vw), 0.75rem);
+
+  /* Space 2xs-xs: 9px → 18px */
+  --space-2xs-xs: clamp(0.56rem, calc(0.35rem + 1.06vw), 1.13rem);
+
+  /* Space xs-s: 14px → 24px */
+  --space-xs-s: clamp(0.88rem, calc(0.64rem + 1.18vw), 1.50rem);
+
+  /* Space s-m: 18px → 36px */
+  --space-s-m: clamp(1.13rem, calc(0.70rem + 2.12vw), 2.25rem);
+
+  /* Space m-l: 27px → 48px */
+  --space-m-l: clamp(1.69rem, calc(1.19rem + 2.47vw), 3.00rem);
+
+  /* Space l-xl: 36px → 72px */
+  --space-l-xl: clamp(2.25rem, calc(1.40rem + 4.24vw), 4.50rem);
+
+  /* Space xl-2xl: 54px → 96px */
+  --space-xl-2xl: clamp(3.38rem, calc(2.39rem + 4.94vw), 6.00rem);
+
+  /* Space 2xl-3xl: 72px → 144px */
+  --space-2xl-3xl: clamp(4.50rem, calc(2.81rem + 8.47vw), 9.00rem);
+
+  /* Custom pairs */
+  /* Space s-l: 18px → 48px */
+  --space-s-l: clamp(1.13rem, calc(0.42rem + 3.53vw), 3.00rem);
+
+  --space: var(--space-m);
+
+  /* System tokens: semantic pointers to Reference tokens */
+  --nyc-sys-color-primary: var(--nyc-ref-color-blue-400);
+  --nyc-sys-color-on-primary: var(--nyc-ref-color-neutral-0);
+  --nyc-sys-color-primary-dark: var(--nyc-ref-color-blue-500);
+  --nyc-sys-color-primary-darker: var(--nyc-ref-color-blue-600);
+  --nyc-sys-color-secondary: var(--nyc-ref-color-neutral-100);
+  --nyc-sys-color-secondary-dark: var(--nyc-ref-color-neutral-300);
+  --nyc-sys-color-secondary-darker: var(--nyc-ref-color-neutral-400);
+  --nyc-sys-color-on-secondary-darker: var(--nyc-ref-color-neutral-0);
+  --nyc-sys-color-tertiary: var(--nyc-ref-color-neutral-900);
+  --nyc-sys-color-on-tertiary: var(--nyc-ref-color-neutral-0);
+  --nyc-sys-color-focus: var(--nyc-ref-color-neutral-900);
+  --nyc-sys-color-text: var(--nyc-ref-color-neutral-900);
+  --nyc-sys-color-text-weak: var(--nyc-ref-color-neutral-400);
+  --nyc-sys-color-background: var(--nyc-ref-color-neutral-0);
+  --nyc-sys-color-border: var(--nyc-ref-color-neutral-200);
+  --nyc-sys-gradient-primary: var(--nyc-ref-gradient-blue-1);
+  --nyc-sys-gradient-primary-dark: var(--nyc-ref-gradient-blue-2);
+  --nyc-sys-shadow-primary: var(--nyc-ref-shadow-300);
+  --nyc-sys-shadow-base: var(--nyc-ref-shadow-500);
+  --nyc-sys-shadow-weak: var(--nyc-ref-shadow-400);
+  --nyc-sys-font-size-base: var(--size-step-0);
+  --nyc-sys-font-family-base: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Component tokens: Used within specific components, reference system tokens */
+  --nyc-cmp-button-color: var(--nyc-sys-color-text, currentColor);
+  --nyc-cmp-button-color-disabled: var(--nyc-sys-color-on-secondary-darker, currentColor);
+  --nyc-cmp-button-background: var(--nyc-sys-color-background, transparent);
+  --nyc-cmp-button-background-disabled: var(--nyc-sys-color-secondary-dark, transparent);
+  --nyc-cmp-button-shadow: var(--nyc-sys-shadow-base);
+  --nyc-cmp-button-border: 2px solid var(--nyc-sys-color-border);
+
+  --nyc-cmp-input-background: var(--nyc-sys-color-background);
+  --nyc-cmp-input-color: var(--nyc-sys-color-text-weak);
+  --nyc-cmp-input-border: 1px solid var(--nyc-sys-color-border);
+  --nyc-cmp-input-shadow: var(--nyc-sys-shadow-weak);
+  --nyc-cmp-input-font: 400 1rem /3.25 var(--nyc-sys-font-family-base);
+
+  --nyc-cmp-card-background: var(--nyc-sys-gradient-primary, transparent);
+  --nyc-cmp-card-background-hover: var(--nyc-sys-gradient-primary-dark, transparent);
+  --nyc-cmp-card-color: var(--nyc-sys-color-on-primary);
+  --nyc-cmp-card-color-outline: var(--nyc-sys-color-on-primary);
+  --nyc-cmp-card-shadow: var(--nyc-sys-shadow-base);
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div class="container">
+      <nyc-csv data-src="events.csv">
+        <nyc-reel class="flow">
+          <nyc-event-card-list
+            data-subscribe="nyc-csv-complete"
+            aria-label="recruitment event cards"
+          >
+            <a
+              href="https://www.nyc.gov/site/dcas/agencies/office-of-citywide-recruitment.page"
+              class="button"
+              data-variant="primary"
+              id="city-jobs_link_view-recruitment-events"
+            >
+              View recruitment events
+              <i class="i-ri:external-link-line"></i>
+            </a>
+          </nyc-event-card-list>
+        </nyc-reel>
+      </nyc-csv>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" integrity="sha512-dfX5uYVXzyU8+KHqj8bjo7UkOdg18PaOtpa48djpNbZHwExddghZ+ZmzWT06R5v6NSk3ZUfsH6FNEDepLx9hPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/main.js" type="module"></script>
+  </body>
+</html>
