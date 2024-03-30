@@ -1,31 +1,29 @@
 class NYCCsv extends HTMLElement {
   constructor() {
     super();
-    this.onCompleteEventName = 'nyc-csv-complete';
+    this.subscriberAttr = 'nyc-csv-subscribe';
   }
 
   async connectedCallback() {
     if (this.isConnected){
       try {
-        const { src } = this.dataset;
-        if(!src) throw new Error('NYCCsv: No data-src provided, quitting');
+        const src = this.getAttribute('src');
+        if(!src) throw new Error('NYCCsv: No src attribute provided, quitting');
 
+        this.onCompleteEventName = this.id || 'nyc-csv-complete';
         const onCompleteSubscribers = Array.from(
-          this.querySelectorAll(`[data-subscribe=${this.onCompleteEventName}]`)
+          document.querySelectorAll(`[${this.subscriberAttr}=${this.id}]`)
         );
 
-        // If we have subscribers, fetch the data
         if (onCompleteSubscribers.length > 0) {
           const csvData = await this.getCsvData(src);
-
-          // If we have data, dispatch complete event
           if (csvData.length > 0){
             this.onComplete(csvData, onCompleteSubscribers);
           } else {
-            console.info('NYCCsv: no rows returned')
+            console.info('NYCCsv: No rows returned')
           }
         } else {
-          console.info('NYCCsv: no subscribers found')
+          console.info('NYCCsv: No subscribers found')
         }
       } catch (e) {
         console.error(e);
@@ -40,9 +38,9 @@ class NYCCsv extends HTMLElement {
    * @param {Array} subscribers - elements that have subscribed to complete event
    */
   onComplete(data, subscribers) {
-    subscribers.forEach(subscriber => this.addEventListener(this.onCompleteEventName, subscriber));
+    subscribers.forEach(subscriber => window.addEventListener(this.onCompleteEventName, subscriber));
 
-    return this.dispatchEvent(
+    return window.dispatchEvent(
       new CustomEvent(this.onCompleteEventName, {
         detail: { data }
       })
@@ -68,13 +66,14 @@ class NYCCsv extends HTMLElement {
     };
 
     try {
-      const res = await papaPromise(url);
-      return res.data;
+      const { data } = await papaPromise(url);
+      return data;
     } catch (e) {
       console.error(e);
     }
   }
 }
+
 
 if ('customElements' in window) {
   customElements.define("nyc-csv", NYCCsv);

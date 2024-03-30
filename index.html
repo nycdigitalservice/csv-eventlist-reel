@@ -5,25 +5,47 @@
   </head>
   <body>
     <div class="container">
-      <nyc-csv data-src="events.csv">
-        <nyc-reel class="flow">
-          <nyc-event-card-list
-            data-subscribe="nyc-csv-complete"
-            aria-label="recruitment event cards"
+      <nyc-reel>
+        <nyc-card-list
+          nyc-csv-subscribe="nyc-events-csv"
+          card-template="event-card-template"
+          variant="event"
+          aria-label="recruitment event cards"
+        >
+          <a
+            href="https://www.nyc.gov/site/dcas/agencies/office-of-citywide-recruitment.page"
+            class="button"
+            data-variant="primary"
           >
-            <a
-              href="https://www.nyc.gov/site/dcas/agencies/office-of-citywide-recruitment.page"
-              class="button"
-              data-variant="primary"
-              id="city-jobs_link_view-recruitment-events"
-            >
-              View recruitment events
-              <i class="i-ri:external-link-line"></i>
-            </a>
-          </nyc-event-card-list>
-        </nyc-reel>
-      </nyc-csv>
+            View recruitment events
+            <i class="i-ri:external-link-line"></i>
+          </a>
+        </nyc-event-card-list>
+      </nyc-reel>
     </div>
+    <template id="event-card-template">
+      <nyc-event-card>
+        <header class="c-card__header">
+          <h3>
+            <a href="#" class="c-card__primary-action" target="_blank">
+              <span>
+                <slot name="title"></slot>
+              </span>
+              <span class="c-card__primary-action__icon-wrapper">
+                <i class="i-ri:arrow-right-line"></i>
+              </span>
+            </a></h3>
+          <time datetime=""></time>
+        </header>
+        <div class="c-card__body">
+          <p><slot name="department"></slot></p>
+          <p><span><slot name="location"></slot></span><br><span><slot name="time"></slot></span></p>
+        </div>
+      </nyc-event-card>
+    </template>
+    
+    <nyc-csv id="nyc-events-csv" src="events.csv"></nyc-csv>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" integrity="sha512-dfX5uYVXzyU8+KHqj8bjo7UkOdg18PaOtpa48djpNbZHwExddghZ+ZmzWT06R5v6NSk3ZUfsH6FNEDepLx9hPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/main.js" type="module"></script>
   </body>

@@ -1,36 +1,5 @@
 export default class NYCEventCard extends HTMLElement {
   /**
-   * Return a template element containing an nyc-event-card to be cloned and populated
-   * @returns {HTMLElement} - A template element
-   */
-  static getTemplate() {
-    const templateStr = `
-    <nyc-event-card class="flow" data-flow-space="s">
-    <header class="c-card__header flex flex-col">
-    <h3>
-    <a href="#" class="no-underline c-card__primary-action" target="_blank">
-    <span>
-    <slot name="title"></slot>
-    </span>
-    <span class="c-card__primary-action__icon-wrapper">
-    <i class="i-ri:arrow-right-line"></i>
-    </span>
-    </a></h3>
-    <time datetime="" class="order-first text-xs"></time>
-    </header>
-    <div class="c-card__body flow" data-flow-space="s">
-    <p><slot name="department"></slot></p>
-    <p><span><slot name="location"></slot></span><br><span><slot name="time"></slot></span></p>
-    </div>
-    </nyc-event-card>
-    `;
-
-    const template = document.createElement('template');
-    template.innerHTML = templateStr;
-    return template;
-  }
-
-  /**
    * Create an nyc-event-card element from an event object and template
    * @param {Object} event - The event to display in the card
    * @param {string} event.title - The title of the event

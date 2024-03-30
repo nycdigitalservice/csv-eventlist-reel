@@ -1,0 +1,31 @@
+* About
+
+This is a webpage that demos four custom elements being used together:
+=nyc-csv=, =nyc-reel=, =nyc-card-list=, and =nyc-event-card=.
+
+* Dependencies
+
+=nyc-csv= depends on the [[https://www.papaparse.com/][Papa Parse]] library
+
+* Overview
+
+=nyc-csv= is a small wrapper around Papa Parse that implements a pub/sub
+model. Give the element an =id= attribute and it will dispatch its
+results to any element with a =nyc-csv-subscribe= attribute containing
+the respective =id=.
+
+=nyc-card-list= manages incoming CSV data and contains some logic for
+processing different card variants, though only event cards are
+defined right now. It expects the following attributes:
+
+- =card-template=: should contain the =id= of an existing =template= element
+  to be used for populating card data. The =template= element should
+  contain =slot= elements with =name= attributes corresponding to your CSV
+  columns.
+- =variant=: used for applying per-card-variant logic. Currently only
+  accepts =event=.
+
+=nyc-event-card= contains some date-formatting logic relevant to events.
+
+=nyc-reel= manages the reel/carousel/slider. It expects a wrapper
+element around child slides, which here is =nyc-card-list=.
